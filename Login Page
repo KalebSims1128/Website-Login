@@ -1,0 +1,113 @@
+def menu():
+    while True:
+        print("Login/Signin Menu")
+        print("1.Log in")
+        print("2.Sign in")
+        print("3.Exit")
+
+        user_input = input("Please input: ")
+        if user_input == '1':
+            login()
+
+        elif user_input == "2":
+            signup()
+
+        elif user_input == '3':
+            print("GoodBye!")
+            break
+
+        else:
+            print("Invalid!")
+
+def signup():
+    print("Sign up ")
+    user_id = input("Please input a ID: ")
+    user_pass = input("Please input a Password: ")
+
+    with open("id.txt","a") as id_file, open("pass.txt", "a") as pass_file:
+        id_file.write(user_id + "\n")
+        pass_file.write(user_pass + "\n")
+
+def login():
+    print("Log in")
+    user_id = input("Please input a ID: ")
+    user_pass = input("Please input a Password: ")
+
+    with open("id.txt", "r")as id_file:
+        ids = id_file.read().splitlines()
+
+    with open("pass.txt", "r")as pass_file:
+        passwords = pass_file.read().splitlines()
+
+    if user_id in ids:
+        index = ids.index(user_id)
+        if passwords[index] == user_pass:
+            print(f"Welcome back,{user_id}")
+            mainMenu()
+        else:
+            print("ID or Password is incorrect!")
+    else:
+        print("User not found!")
+
+
+def mainMenu():
+    while True:
+        print("1. Utility")
+        print("2. Game")
+        print("3. Multimedia")
+        print("4. Exit")
+        choice = input("Please Input: ")
+        if choice == '1':
+            utility()
+        elif choice == '2':
+            gameMenu()
+        elif choice == '3':
+            multimedia()
+        elif choice == '4':
+            print("You are logged out!")
+            break
+
+def gameMenu():
+    print('1. Poker')
+    print('2. BlackJack')
+    print('3. Star craft')
+    print('4. Main Menu')
+    choice = input("Please Input: ")
+    if choice == '1' or choice == '2' or choice == '3':
+        print("I am sorry. It's not ready yet.")
+        gameMenu()
+    elif choice == '4':
+        return
+    else:
+        print("Please input correctly")
+
+def utility():
+    print("1.Caculator")
+    print("2.Email")
+    print("3.Note")
+    print("4.Main Menu")
+    choice = input("Please Input: ")
+    if choice == '1' or choice == '2' or choice == '3':
+        print("I am sorry. It's not ready yet.")
+        utility()
+    elif choice == '4':
+        return
+    else:
+        print("Please input correctly")
+
+def multimedia():
+    print("1.Music Player")
+    print("2.Camera")
+    print("3.Download")
+    print("4.Main Menu")
+    choice = input("Please Input: ")
+    if choice == '1' or choice == '2' or choice ==  '3':
+        print("I am sorry. It's not ready yet.")
+        multimedia()
+    elif choice == '4':
+        return
+    else:
+        print("Please input correctly")
+
+
+menu()
